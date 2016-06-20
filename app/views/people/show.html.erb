@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @person.name %>
+</p>
+
+<p>
+  <strong>Urls:</strong>
+  <%= @person.urls %>
+</p>
+
+<p>
+  <strong>Timezone:</strong>
+  <%= @person.timezone %>
+</p>
+
+<p>
+  <strong>Birthday:</strong>
+  <%= @person.birthday %>
+</p>
+
+<p>
+  <strong>Chat usernames:</strong>
+  <%= @person.chat_usernames %>
+</p>
+
+<p>
+  <strong>Photo:</strong>
+  <%= @person.photo %>
+</p>
+
+<p>
+  <strong>Additional info:</strong>
+  <%= @person.additional_info %>
+</p>
+
+<%= link_to 'Edit', edit_person_path(@person) %> |
+<%= link_to 'Back', people_path %>
