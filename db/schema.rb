@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160621002252) do
+ActiveRecord::Schema.define(version: 20160621013819) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,13 +19,13 @@ ActiveRecord::Schema.define(version: 20160621002252) do
   create_table "people", force: :cascade do |t|
     t.string   "name"
     t.text     "urls"
-    t.string   "timezone"
     t.date     "birthday"
     t.text     "chat_usernames"
     t.text     "photo"
     t.text     "additional_info"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.integer  "timezone_id"
   end
 
   create_table "timezones", force: :cascade do |t|

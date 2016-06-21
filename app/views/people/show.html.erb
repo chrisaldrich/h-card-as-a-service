@@ -3,7 +3,7 @@
 <% end %>
 
 <% if notice %>
-	<div class="alert alert-notice"><%= notice %></div>
+	<div class="alert alert-info"><%= notice %></div>
 <% end %>
 
 <div class="h-card">
@@ -25,7 +25,10 @@
 
 	<% unless @person.timezone.blank? %>
 		<h2 class="h4">Timezone</h2>
-		<p class="p-tz"><%= @person.timezone %></p>
+		<p class="p-tz">
+			<%= @person.timezone.offset %>
+			<%= @person.timezone.name %>
+		</p>
 	<% end %>
 
 	<% unless @person.birthday.blank? %>
