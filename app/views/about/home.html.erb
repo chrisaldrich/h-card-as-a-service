@@ -6,9 +6,19 @@
   <b>Do not expect its URLs to last.</b>
 </p>
 
+<p class="alert alert-danger">
+  ALL information entered into this site is publicly visible by anyone. 
+  Don't add any information that you want to keep private.
+</p>
+
 <p class="alert alert-info">
   The code that powers this site can be found on GitHub at:
   <b><%= link_to "github.com/veganstraightedge/h-card-as-a-service", "https://github.com/veganstraightedge/h-card-as-a-service" %></b>.<br>
   Feel free to fork it, submit issues, send pull requests or
   <b><a href="https://heroku.com/deploy?template=https://github.com/veganstraightedge/h-card-as-a-service">deploy it to Heroku</a>.</b>
 </p>
+
+<%= form_tag new_path, method: :get, html: {class: "form"} do %>
+  <%= label_tag :domain, "To get started enter the domain of your personal website" %>
+  <%= url_field_tag :domain, nil, class: "form-control input-lg" %>
+<% end %>
