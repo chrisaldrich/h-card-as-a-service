@@ -7,6 +7,6 @@ class Person < ActiveRecord::Base
   before_create :generate_domain
   
   def generate_domain
-    self.domain = self.personal_website.gsub(/https*:\/\//)
+    self.domain = self.personal_website.gsub(/https*:\/\//, "")
   end
 end

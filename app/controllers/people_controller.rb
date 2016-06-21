@@ -9,7 +9,7 @@ class PeopleController < ApplicationController
   end
 
   def new
-    @person = Person.new
+    @person = Person.new(personal_website: params[:domain])
   end
 
   def edit
@@ -20,8 +20,8 @@ class PeopleController < ApplicationController
 
     respond_to do |format|
       if @person.save
-        format.html { redirect_to @person, notice: 'Person was successfully created.' }
-        format.json { render :show, status: :created, location: @person }
+        format.html { redirect_to person_path(@person), notice: 'Person was successfully created.' }
+        format.json { render :show, status: :created, location: person_path(@person) }
       else
         format.html { render :new }
         format.json { render json: @person.errors, status: :unprocessable_entity }
@@ -32,8 +32,8 @@ class PeopleController < ApplicationController
   def update
     respond_to do |format|
       if @person.update(person_params)
-        format.html { redirect_to @person, notice: 'Person was successfully updated.' }
-        format.json { render :show, status: :ok, location: @person }
+        format.html { redirect_to person_path(@person), notice: 'Person was successfully updated.' }
+        format.json { render :show, status: :ok, location: person_path(@person) }
       else
         format.html { render :edit }
         format.json { render json: @person.errors, status: :unprocessable_entity }
@@ -51,7 +51,7 @@ class PeopleController < ApplicationController
 
   private
   def set_person
-    @person = Person.find(params[:id])
+    @person = Person.find_by(domain: "#{params[:domain]}.#{params[:tld]}")
   end
 
   def person_params

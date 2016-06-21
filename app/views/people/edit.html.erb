@@ -1,3 +1,5 @@
-<h1><%= link_to "Editing #{@person.name}", @person %></h1>
+<h1><%= link_to "Editing #{@person.name}", person_path(@person) %></h1>
 
 <%= render 'form' %>
+
+<%= render "danger_zone" if signed_in? %>
