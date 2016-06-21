@@ -1,39 +1,49 @@
-<p id="notice"><%= notice %></p>
+<% if logged_in? %>
+	<p><%= link_to 'Edit', edit_person_path(@person), class: "btn btn-default" %></p>
+<% end %>
 
-<p>
-  <strong>Name:</strong>
-  <%= @person.name %>
-</p>
+<% if notice %>
+	<div class="alert alert-notice"><%= notice %></div>
+<% end %>
 
-<p>
-  <strong>Urls:</strong>
-  <%= @person.urls %>
-</p>
+<div class="h-card">
+	<% unless @person.chat_usernames.blank? %>
+		<%= image_tag @person.photo, class: "u-photo" %>
+	<% end %>
 
-<p>
-  <strong>Timezone:</strong>
-  <%= @person.timezone %>
-</p>
+	<h1 class="p-name">
+		<%= @person.name %>
+	</h1>
 
-<p>
-  <strong>Birthday:</strong>
-  <%= @person.birthday %>
-</p>
+	<% unless @person.urls.blank? %>
+		<ul>
+			<% @person.urls.split(/\s/).map{ |u| u unless u.blank? }.compact.each do |url| %>
+				<li><%= link_to url, url, rel: "me", class: "u-url" %></li>
+			<% end %>
+		</ul>
+	<% end %>
 
-<p>
-  <strong>Chat usernames:</strong>
-  <%= @person.chat_usernames %>
-</p>
+	<% unless @person.timezone.blank? %>
+		<h2 class="h4">Timezone</h2>
+		<p class="p-tz"><%= @person.timezone %></p>
+	<% end %>
 
-<p>
-  <strong>Photo:</strong>
-  <%= @person.photo %>
-</p>
+	<% unless @person.birthday.blank? %>
+		<h2 class="h4">Birthday</h2>
+		<p class="dt-bday"><%= @person.birthday %></p>
+	<% end %>
 
-<p>
-  <strong>Additional info:</strong>
-  <%= @person.additional_info %>
-</p>
+	<% unless @person.chat_usernames.blank? %>
+		<h2 class="h4">Chat Usernames</h2>
+		<ul>
+			<% @person.chat_usernames.split(/\s|,/).map{ |cu| cu unless cu.blank? }.compact.each do |url| %>
+				<li><%= link_to url, url, rel: "me", class: "u-url" %></li>
+			<% end %>
+		</ul>
+	<% end %>
 
-<%= link_to 'Edit', edit_person_path(@person) %> |
-<%= link_to 'Back', people_path %>
+	<% unless @person.additional_info.blank? %>
+		<h2 class="h4">Additional Info</h2>
+		<%= simple_format @person.additional_info %>
+	<% end %>
+</div>

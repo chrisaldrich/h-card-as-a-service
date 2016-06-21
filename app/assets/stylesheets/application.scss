@@ -1,2 +1,12 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+body {
+	margin: 1em auto;
+}
+
+.h-card {
+	.u-photo {
+		max-width: 200px;
+	}
+}
