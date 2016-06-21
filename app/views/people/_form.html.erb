@@ -11,82 +11,82 @@
     </div>
   <% end %>
 
-	<div class="form-group">
-		<%= f.label :name %>
-		<%= f.text_field :name, class: "form-control input-lg" %>
-	</div>
+  <div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name, class: "form-control input-lg" %>
+  </div>
 
-	<div class="form-group">
-		<%= f.label :urls, "URLs" %>
-		<%= f.text_area :urls, class: "form-control input-lg" %>
-		<p class="help-block">Personal website and any social media accounts. Separated by white-space (space or line break).</p>
-	</div>
+  <div class="form-group">
+    <%= f.label :urls, "URLs" %>
+    <%= f.text_area :urls, class: "form-control input-lg" %>
+    <p class="help-block">Personal website and any social media accounts. Separated by white-space (space or line break).</p>
+  </div>
 
-	<div class="form-group">
-		<%= f.label :timezone %>
-		<%= f.text_field :timezone, class: "form-control" %>
-	</div>
+  <div class="form-group">
+    <%= f.label :timezone %>
+    <%= f.select :timezone, Timezone.options_for_select, { include_blank: true }, { class: "form-control" } %>
+  </div>
 
-	<div class="form-group">
+  <div class="form-group">
     <%= f.label :birthday %>
 
-		<div class="row">
-		  <div class="col-xs-12 col-sm-4">
-		    <%= select_year Time.now,
-		          {
-								prompt: false,
-								start_year: 1900,
-								end_year: Time.now.year
-							},
-							start_year: 1900,
-							end_year: Time.now.year, 
-		          name:  "person[birthday(1i)]",
-		          id:    "person_birthday_year_1i",
-		          class: "form-control datetime-select" %>
-				<p class="help-block">Year</p>
-		  </div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-4">
+        <%= select_year Time.now,
+              {
+                prompt: false,
+                start_year: Time.now.year - 100,
+                end_year: Time.now.year
+              },
+              start_year: 1900,
+              end_year: Time.now.year, 
+              name:  "person[birthday(1i)]",
+              id:    "person_birthday_year_1i",
+              class: "form-control datetime-select" %>
+        <p class="help-block">Year</p>
+      </div>
 
-		  <div class="col-xs-12 col-sm-4">
-		    <%= select_month Time.now,
-		          { prompt: false, add_month_numbers: true },
-		          name:  "person[birthday(2i)]",
-		          id:    "person_birthday_2i",
-		          class: "form-control datetime-select" %>
-				<p class="help-block">Month</p>
-		  </div>
+      <div class="col-xs-12 col-sm-4">
+        <%= select_month Time.now,
+              { prompt: false, add_month_numbers: true },
+              name:  "person[birthday(2i)]",
+              id:    "person_birthday_2i",
+              class: "form-control datetime-select" %>
+        <p class="help-block">Month</p>
+      </div>
 
-		  <div class="col-xs-12 col-sm-4">
-		    <%= select_day Time.now,
-		          { prompt: false },
-		          name:  "person[birthday(3i)]",
-		          id:    "person_birthday_3i",
-		          class: "form-control datetime-select" %>
-				<p class="help-block">Day</p>
-		  </div>
-		</div>
+      <div class="col-xs-12 col-sm-4">
+        <%= select_day Time.now,
+              { prompt: false },
+              name:  "person[birthday(3i)]",
+              id:    "person_birthday_3i",
+              class: "form-control datetime-select" %>
+        <p class="help-block">Day</p>
+      </div>
+    </div>
 
   </div>
 
-	<div class="form-group">
-		<%= f.label :chat_usernames %>
-		<%= f.text_field :chat_usernames, class: "form-control" %>
-		<p class="help-block">Slack usernames or IRC nicknames. Separated by comma or space.</p>
-	</div>
+  <div class="form-group">
+    <%= f.label :chat_usernames %>
+    <%= f.text_field :chat_usernames, class: "form-control" %>
+    <p class="help-block">Slack usernames or IRC nicknames. Separated by comma or space.</p>
+  </div>
 
-	<div class="form-group">
+  <div class="form-group">
     <%= f.label :photo, "Photo (profile / avatar)" %>
     <%= f.url_field :photo, class: "form-control" %>
-		<p class="help-block">URL of image, preferrably on your personal website.</p>
+    <p class="help-block">URL of image, preferrably on your personal website.</p>
   </div>
 
-	<div class="form-group">
-		<%= f.label :additional_info, "Additional Info" %>
-		<%= f.text_area :additional_info, class: "form-control", rows: "10" %>
-		<p class="help-block">Free space to write whatever you want. HTML is allowed.</p>
-	</div>
+  <div class="form-group">
+    <%= f.label :additional_info, "Additional Info" %>
+    <%= f.text_area :additional_info, class: "form-control", rows: "10" %>
+    <p class="help-block">Free space to write whatever you want. HTML is allowed.</p>
+  </div>
 
-	<div class="actions">
-		<%= link_to "Cancel", "root_path", class: "cancel" %>
-		<%= f.submit "Save" , class: "btn btn-success btn-lg" %>
-	</div>
+  <div class="actions">
+    <%= link_to "Cancel", "root_path", class: "cancel" %>
+    <%= f.submit "Save" , class: "btn btn-success btn-lg" %>
+  </div>
 <% end %>
