@@ -7,7 +7,7 @@
 <% end %>
 
 <div class="row">
-	<div class="col-xs-12 col-sm-3">
+	<div class="col-xs-12">
 
 		<div class="h-card">
 			<% unless @person.photo.blank? %>
@@ -65,8 +65,8 @@
 			<% end %>
 		</div><!-- .h-card -->
 	</div>
-	
-	<div class="col-xs-12 col-sm-9">
+
+	<div class="col-xs-12">
 		<h2 class="h4">h-card code</h2>
 		<pre class="language-html"><%= h_card_code(@person) %></pre>
 	</div>
