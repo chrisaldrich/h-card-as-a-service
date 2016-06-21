@@ -2,11 +2,26 @@
 @import "bootstrap";
 
 body {
-  margin: 1em auto;
+  margin: 1em auto 10em auto;
 }
 
 .h-card {
   .u-photo {
     max-width: 200px;
+  }
+}
+
+
+.actions {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  text-align: right;
+
+  .cancel {
+    opacity: .5;
+  }
+
+  .btn {
+    margin-left: 1rem;
   }
 }
