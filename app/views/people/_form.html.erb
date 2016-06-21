@@ -18,14 +18,20 @@
   </div>
 
   <div class="form-group">
-    <%= f.label :email %>
-    <%= f.url_field :email, class: "form-control" %>
+    <%= f.label :urls, "Other URLs" %>
+    <%= f.text_area :urls, class: "form-control" %>
+    <p class="help-block">Twitter, Facebook, Instagram, GitHub, etc. Separated by white-space (space or line break).</p>
   </div>
 
   <div class="form-group">
-    <%= f.label :urls, "URLs" %>
-    <%= f.text_area :urls, class: "form-control" %>
-    <p class="help-block">Twitter, Facebook, Instagram, GitHub, etc. Separated by white-space (space or line break).</p>
+    <%= f.label :photo, "Photo (profile / avatar)" %>
+    <%= f.url_field :photo, class: "form-control" %>
+    <p class="help-block">URL of image, preferrably on your personal website.</p>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :email %>
+    <%= f.url_field :email, class: "form-control" %>
   </div>
 
   <div class="form-group">
@@ -38,8 +44,9 @@
 
     <div class="row">
       <div class="col-xs-12 col-sm-4">
-        <%= select_year Time.now,
+        <%= select_year @person.birthday.try(:year),
               {
+                include_blank: true,
                 prompt: false,
                 start_year: Time.now.year - 100,
                 end_year: Time.now.year
@@ -53,8 +60,12 @@
       </div>
 
       <div class="col-xs-12 col-sm-4">
-        <%= select_month Time.now,
-              { prompt: false, add_month_numbers: true },
+        <%= select_month @person.birthday.try(:month),
+              {
+                include_blank: true,
+                prompt: false,
+                add_month_numbers: true
+              },
               name:  "person[birthday(2i)]",
               id:    "person_birthday_2i",
               class: "form-control datetime-select" %>
@@ -62,8 +73,11 @@
       </div>
 
       <div class="col-xs-12 col-sm-4">
-        <%= select_day Time.now,
-              { prompt: false },
+        <%= select_day @person.birthday.try(:day),
+              {
+                include_blank: true,
+                prompt: false
+              },
               name:  "person[birthday(3i)]",
               id:    "person_birthday_3i",
               class: "form-control datetime-select" %>
@@ -77,12 +91,6 @@
     <%= f.label :chat_usernames %>
     <%= f.text_field :chat_usernames, class: "form-control" %>
     <p class="help-block">Slack usernames or IRC nicknames. Separated by comma or space.</p>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :photo, "Photo (profile / avatar)" %>
-    <%= f.url_field :photo, class: "form-control" %>
-    <p class="help-block">URL of image, preferrably on your personal website.</p>
   </div>
 
   <div class="form-group">

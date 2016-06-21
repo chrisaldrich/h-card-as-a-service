@@ -22,17 +22,17 @@
         <p><%= link_to @person.personal_website, @person.personal_website, class: "u-url" %></p>
       <% end %>
 
-      <% unless @person.name.blank? %>
-        <p><%= mail_to @person.email, @person.email, class: "u-email" %></p>
-      <% end %>
-
       <% unless @person.urls.blank? %>
-        <h2 class="h4">Elsewhere</h2>
+        <h2 class="h4">Other URLs</h2>
         <ul>
           <% @person.urls.split(/\s/).map{ |u| u unless u.blank? }.compact.each do |url| %>
             <li><%= link_to url, url, rel: "me", class: "u-url" %></li>
           <% end %>
         </ul>
+      <% end %>
+
+      <% unless @person.name.blank? %>
+        <p><%= mail_to @person.email, @person.email, class: "u-email" %></p>
       <% end %>
 
       <% unless @person.timezone.blank? %>
