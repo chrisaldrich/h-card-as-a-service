@@ -37,10 +37,7 @@
 
       <% unless @person.timezone.blank? %>
         <h2 class="h4">Timezone</h2>
-        <p class="p-tz">
-          <%= @person.timezone.offset %>
-          <%= @person.timezone.name %>
-        </p>
+        <data class="p-tz" value="<%= @person.timezone.offset %>"><%= @person.timezone.name %></data>
       <% end %>
 
       <% unless @person.birthday.blank? %>
