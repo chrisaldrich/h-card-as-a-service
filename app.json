@@ -1,0 +1,32 @@
+{
+  "name": "h-card as a service",
+  "description": "Rails app to easily create profiles with h-card microformats and copyable markup",
+  "keywords": [
+    "microformats",
+    "h-card",
+    "indieweb",
+    "rubyonrails",
+    "rails"
+  ],
+  "website": "https://github.com/veganstraightedge/h-card-as-a-service",
+  "repository": "https://github.com/veganstraightedge/h-card-as-a-service",
+  "logo": "http://microformats.org/wordpress/wp-content/themes/microformats/img/mf-lg-ora.gif",
+
+  "success_url": "/",
+  "scripts": {
+    "postdeploy": "bundle exec rake db:migrate"
+  },
+  "env": {
+    "RAILS_ENV": "production",
+    "SECRET_KEY_BASE": {
+      "description": "This gets generated",
+      "generator":   "secret"
+    },
+    "MIN_THREADS": "1",
+    "MAX_THREADS": "1"
+  },
+  "addons": [
+    "heroku-postgresql:hobby-dev"
+  ],
+  "image": "heroku/cedar"
+}
