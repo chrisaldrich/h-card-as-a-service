@@ -8,6 +8,13 @@
 </head>
 <body>
   <div class="container">
+    <nav role="navigation">
+      <% if signed_in? %>
+        <%= link_to 'Home', root_path, class: "btn btn-default", rel: "home" %>
+        <%= link_to 'New Person', new_path, class: "btn btn-default" %>
+      <% end %>
+    </nav>
+
     <%= yield %>
   </div>
 </body>

@@ -1,0 +1,52 @@
+<div class="h-card">
+  <% unless person.photo.blank? %>
+    <%= image_tag person.photo, class: "u-photo" %>
+  <% end %>
+
+  <% unless person.name.blank? %>
+    <h1 class="p-name"><%= person.name %></h1>
+  <% end %>
+
+  <% unless person.personal_website.blank? %>
+    <p><%= link_to person.personal_website, person.personal_website, class: "u-url" %></p>
+  <% end %>
+
+  <% unless person.urls.blank? %>
+    <h2 class="h4">Other URLs</h2>
+    <ul>
+      <% person.urls.split(/\s/).map{ |u| u unless u.blank? }.compact.each do |url| %>
+        <li><%= link_to url, url, rel: "me", class: "u-url" %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <% unless person.name.blank? %>
+    <p><%= mail_to person.email, person.email, class: "u-email" %></p>
+  <% end %>
+
+  <% unless person.timezone.blank? %>
+    <h2 class="h4">Timezone</h2>
+    <data class="p-tz" value="<%= person.timezone.offset %>"><%= person.timezone.name %></data>
+  <% end %>
+
+  <% unless person.birthday.blank? %>
+    <h2 class="h4">Birthday</h2>
+    <p class="dt-bday"><%= person.birthday %></p>
+  <% end %>
+
+  <% unless person.chat_usernames.blank? %>
+    <h2 class="h4">Chat Usernames</h2>
+    <ul>
+      <% person.chat_usernames.split(/\s|,/).map{ |cu| cu unless cu.blank? }.compact.each do |chat_username| %>
+        <li class="p-nickname"><%= chat_username %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <% unless person.additional_info.blank? %>
+    <h2 class="h4">Additional Info</h2>
+    <div class="p-note">
+      <%= simple_format person.additional_info %>
+    </div>
+  <% end %>
+</div><!-- .h-card -->
