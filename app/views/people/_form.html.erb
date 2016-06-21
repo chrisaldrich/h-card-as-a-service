@@ -13,9 +13,19 @@
   </div>
 
   <div class="form-group">
+    <%= f.label :personal_website, "Personal Website" %>
+    <%= f.url_field :personal_website, class: "form-control input-lg" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :email %>
+    <%= f.url_field :email, class: "form-control input-lg" %>
+  </div>
+
+  <div class="form-group">
     <%= f.label :urls, "URLs" %>
     <%= f.text_area :urls, class: "form-control input-lg" %>
-    <p class="help-block">Personal website and any social media accounts. Separated by white-space (space or line break).</p>
+    <p class="help-block">Twitter, Facebook, Instagram, GitHub, etc. Separated by white-space (space or line break).</p>
   </div>
 
   <div class="form-group">
