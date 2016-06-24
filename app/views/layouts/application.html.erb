@@ -12,6 +12,13 @@
       <% if signed_in? %>
         <%= link_to 'Home', root_path, class: "btn btn-default", rel: "home" %>
         <%= link_to 'New Person', new_path, class: "btn btn-default" %>
+
+        <% if signed_in? && @person.try(:domain).present? %>
+          <%= link_to edit_person_path(@person), class: "btn btn-default" do %>
+            Edit 
+            <b><%= @person.domain %></b>
+          <% end %>
+        <% end %>
       <% end %>
     </nav>
 
