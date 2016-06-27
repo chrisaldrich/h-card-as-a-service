@@ -16,12 +16,10 @@ class PeopleController < ApplicationController
     @person = Person.new(personal_website: website)
 
     unless params[:website].blank?
-      url = "http://pin13.net/mf2/?url=#{website}"
-      parsed_microformats = JSON.parse(open(url).read)
+      url = "https://pin13.net/mf2/?url=#{website}"
+      @parsed_microformats = JSON.parse(open(url).read)
 
-      @parsed_microformats = parsed_microformats # TMP
-
-      parsed_microformats["items"].each do |item|
+      @parsed_microformats["items"].each do |item|
         if item["type"].include?("h-card")
           # name
           if item["properties"]["name"].present?
