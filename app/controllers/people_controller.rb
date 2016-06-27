@@ -24,7 +24,7 @@ class PeopleController < ApplicationController
         if item["type"].include?("h-card")
           # name
           if item["properties"]["name"].present?
-            @person.name = item["properties"]["name"].try(:first)
+            @person.name = item["properties"]["name"].first
           end
 
           # urls
@@ -40,12 +40,12 @@ class PeopleController < ApplicationController
 
           # photo
           if item["properties"]["photo"].present?
-            @person.photo = item["properties"]["photo"].try(:first)
+            @person.photo = item["properties"]["photo"].first
           end
 
           # email
           if item["properties"]["email"].present?
-            @person.email = item["properties"]["email"].join(" ").try(:gsub, "mailto:", "")
+            @person.email = item["properties"]["email"].join(" ").gsub("mailto:", "")
           end
 
           # location
@@ -56,7 +56,10 @@ class PeopleController < ApplicationController
           @person.location = location_pieces.compact.join(", ")
 
           # birthday (bday)
-          # TODO https://indiewebcamp.com/birthday#IndieWeb_Examples
+          if item["properties"]["bday"].present?
+            @birthday = Date.parse(item["properties"]["bday"].first)
+            @person.birthday = @birthday
+          end
 
           # timezone offset (tz)
           if item["properties"]["tz"].present?
