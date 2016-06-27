@@ -68,7 +68,7 @@ module PeopleHelper
       end
 
       # timezone offset
-      unless person.email.blank?
+      unless person.timezone.blank?
         html << tab
         html << h(%Q{<data class="p-tz" value="#{person.timezone.offset}">#{person.timezone.name}</data>})
         html << tag(:br)
