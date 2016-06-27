@@ -5,9 +5,10 @@ class RemoveColonFromOffsetInTimezones < ActiveRecord::Migration
       timezone.save!
     end
   end
+
   def down
     Timezone.all.each do |timezone|
-      timezone.offset = timezone.offset.sub(/(\d{2})$/, ":$1")
+      timezone.offset = timezone.offset.sub(/(\d{2})$/, ":#{$1}")
       timezone.save!
     end
   end
