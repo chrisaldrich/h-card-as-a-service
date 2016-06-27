@@ -4,7 +4,6 @@
 
 * write README
 * add person/delete?
-* add @nickname search urls
 * create `/chat-people` to be like http://indiewebcamp.com/irc-people
 * implement real `signed_in?` using indieauth
   * auto-populate `URL` from indieauth when `signed_in?`

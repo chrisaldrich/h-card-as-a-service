@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   root 'about#home'
 
+  get '/@:nickname',        to: "people#nickname"
   get '/:domain.:tld',      to: "people#show"
   get '/:domain.:tld/edit', to: "people#edit"
   get '/new',               to: "people#new", as: "new"
