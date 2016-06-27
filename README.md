@@ -2,12 +2,12 @@
 
 # TODO
 
-* [ ] write README
-* [ ] fetch h-card from entered domain (use pin13)
-* [ ] add person/delete?
-* [ ] add @nickname search urls
-* [ ] ensure leading `http://` or `https://`  on `Personal Website` field
-* [ ] create `/chat-people` to be like http://indiewebcamp.com/irc-people
-* [ ] implement real `signed_in?` using indieauth
-* [ ] auto-populate `URL` from indieauth when `signed_in?`
+* write README
+* add person/delete?
+* add @nickname search urls
+* create `/chat-people` to be like http://indiewebcamp.com/irc-people
+* implement real `signed_in?` using indieauth
+  * auto-populate `URL` from indieauth when `signed_in?`
+* port https://github.com/indieweb/representative-h-card-php to Ruby
+  * use that to parse bday from http://acegiak.net
 * ...
