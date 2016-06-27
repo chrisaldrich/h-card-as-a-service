@@ -1,3 +1,6 @@
+require "open-uri"
+require "json"
+
 class PeopleController < ApplicationController
   before_action :set_person, only: [:show, :edit, :update, :destroy]
 
@@ -9,7 +12,81 @@ class PeopleController < ApplicationController
   end
 
   def new
-    @person = Person.new(personal_website: params[:domain])
+    website = params[:website]
+    @person = Person.new(personal_website: website)
+
+    unless params[:website].blank?
+      url = "http://pin13.net/mf2/?url=#{website}"
+      parsed_microformats = JSON.parse(open(url).read)
+
+      @parsed_microformats = parsed_microformats # TMP
+
+      parsed_microformats["items"].each do |item|
+        if item["type"].include?("h-card")
+          # name
+          if item["properties"]["name"].present?
+            @person.name = item["properties"]["name"].try(:first)
+          end
+
+          # urls
+          if item["properties"]["url"].present?
+            urls = []
+            item["properties"]["url"].each do |url|
+              unless url.include?(website)
+                urls << url
+              end
+            end
+            @person.urls = urls.join(" ")
+          end
+
+          # photo
+          if item["properties"]["photo"].present?
+            @person.photo = item["properties"]["photo"].try(:first)
+          end
+
+          # email
+          if item["properties"]["email"].present?
+            @person.email = item["properties"]["email"].join(" ").try(:gsub, "mailto:", "")
+          end
+
+          # location
+          location_pieces = []
+          location_pieces << item["properties"]["locality"].try(:first)
+          location_pieces << item["properties"]["region"].try(:first)
+          location_pieces << item["properties"]["country-name"].try(:first)
+          @person.location = location_pieces.compact.join(", ")
+
+          # birthday (bday)
+          # TODO
+
+          # timezone offset (tz)
+          if item["properties"]["tz"].present?
+            @tz = item["properties"]["tz"].first
+            timezone = Timezone.find_by(offset: item["properties"]["tz"].first.sub(":", ""))
+
+            if timezone.nil?
+              timezone = Timezone.find_by(name: item["properties"]["tz"].first)
+            end
+
+            @person.timezone = timezone if timezone.present?
+          end
+
+          # nicknames
+          nicknames = []
+          if item["properties"]["nickname"].present?
+            item["properties"]["nickname"].each do |nickname|
+              nicknames << nickname
+            end
+            @person.chat_usernames = nicknames.compact.uniq.join(", ")
+          end
+
+          # additional_info
+          if item["properties"]["note"].present?
+            @person.additional_info = item["properties"]["note"].join(" ")
+          end
+        end
+      end
+    end
   end
 
   def edit
@@ -20,7 +97,7 @@ class PeopleController < ApplicationController
 
     respond_to do |format|
       if @person.save
-        format.html { redirect_to person_path(@person), notice: 'Person was successfully created.' }
+        format.html { redirect_to person_path(@person), notice: "Person was successfully created." }
         format.json { render :show, status: :created, location: person_path(@person) }
       else
         format.html { render :new }
@@ -32,7 +109,7 @@ class PeopleController < ApplicationController
   def update
     respond_to do |format|
       if @person.update(person_params)
-        format.html { redirect_to person_path(@person), notice: 'Person was successfully updated.' }
+        format.html { redirect_to person_path(@person), notice: "Person was successfully updated." }
         format.json { render :show, status: :ok, location: person_path(@person) }
       else
         format.html { render :edit }
@@ -44,7 +121,7 @@ class PeopleController < ApplicationController
   def destroy
     @person.destroy
     respond_to do |format|
-      format.html { redirect_to people_url, notice: 'Person was successfully destroyed.' }
+      format.html { redirect_to people_url, notice: "Person was successfully destroyed." }
       format.json { head :no_content }
     end
   end

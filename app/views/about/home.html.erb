@@ -19,8 +19,11 @@
 </p>
 
 <%= form_tag new_path, method: :get, html: {class: "form"} do %>
-  <%= label_tag :domain, "To get started enter the domain of your personal website" %>
-  <%= url_field_tag :domain, nil, class: "form-control input-lg" %>
+  <%= label_tag :website do %>
+    To get started, <br />
+    Type the URL of your personal website
+  <% end %>
+  <%= url_field_tag :website, nil, placeholder: "http://example.com", class: "form-control input-lg" %>
   <div class="actions">
     <button class="btn btn-success btn-lg">Get started...</button>
   </div>
