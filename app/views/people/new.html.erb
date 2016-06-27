@@ -2,32 +2,24 @@
 
 <%= render 'form' %>
 
-<% if @person.personal_website.present? %>
-
+<% if @debug_info.present? %>
   <div id="debug">
     <h2>Debug info</h2>
     <p>
       This section is in place for people trying to figure out why some other their
       <code>h-card</code> properties aren't populating this form properly.
-      This <code>JSON</code> is a subset of all of the parsed microformats from 
-      <%= @person.personal_website %> as parsed by 
+      This <code>JSON</code> is a subset of all of the parsed microformats from
+      <%= @person.personal_website %> as parsed by
       <%= link_to "https://pin13.net", "https://pin13.net" %>.
     </p>
     <p>
       <%= link_to "https://pin13.net/mf2/?url=#{@person.personal_website}", "https://pin13.net/mf2/?url=#{@person.personal_website}" %>
     </p>
 
-    <figure class="highlight">
-      <% if @parsed_microformats.present? %>
-        <% @parsed_microformats["items"].each do |item| %>
-
-          <% if item["type"].include?("h-card") %>
-            <pre><code class="language-html" data-lang="html"><%= item %></code></pre>
-          <% end %>
-
-        <% end %>
-      <% end %>
-    </figure>
+    <% if @debug_info.present? %>
+      <figure class="highlight">
+        <pre><code class="language-json" data-lang="json"><%= raw @debug_info %></code></pre>
+      </figure>
+    <% end %>
   </div>
-
 <% end %>

@@ -1,5 +1,6 @@
 require "open-uri"
 require "json"
+require "rouge"
 
 class PeopleController < ApplicationController
   before_action :set_person, only: [:show, :edit, :update, :destroy]
@@ -17,9 +18,9 @@ class PeopleController < ApplicationController
 
     unless params[:website].blank?
       url = "https://pin13.net/mf2/?url=#{website}"
-      @parsed_microformats = JSON.parse(open(url).read)
+      parsed_microformats = JSON.parse(open(url).read)
 
-      @parsed_microformats["items"].each do |item|
+      parsed_microformats["items"].each do |item|
         if item["type"].include?("h-card")
           # name
           if item["properties"]["name"].present?
@@ -55,7 +56,7 @@ class PeopleController < ApplicationController
           @person.location = location_pieces.compact.join(", ")
 
           # birthday (bday)
-          # TODO
+          # TODO https://indiewebcamp.com/birthday#IndieWeb_Examples
 
           # timezone offset (tz)
           if item["properties"]["tz"].present?
@@ -84,6 +85,11 @@ class PeopleController < ApplicationController
           end
         end
       end
+
+      source      = parsed_microformats.to_s
+      formatter   = Rouge::Formatters::HTML.new
+      lexer       = Rouge::Lexers::Shell.new
+      @debug_info = formatter.format(lexer.lex(source))
     end
   end
 
