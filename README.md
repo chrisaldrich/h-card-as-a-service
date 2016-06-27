@@ -3,9 +3,8 @@
 # TODO
 
 * [ ] write README
-* [ ] add country
-* [ ] add city
-* [ ] or maybe just "location" instead of both of them
+* [ ] add location
+* [ ] fetch h-card from entered domain (use pin13)
 * [ ] add person/delete?
 * [ ] add @nickname search urls
 * [ ] ensure leading `http://` or `https://`  on `Personal Website` field
