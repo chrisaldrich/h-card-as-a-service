@@ -12,14 +12,19 @@ class PeopleController < ApplicationController
   def show
     @people = [@person]
 
-    if @person.nil?
+    if @people.blank?
       redirect_to root_path
     end
   end
 
   def nickname
     @people = Nickname.where(name: params[:nickname]).all.map{ |n| n.person }
-    render :show
+
+    if @people.blank?
+      redirect_to root_path
+    else
+      render :show
+    end
   end
 
   def new
