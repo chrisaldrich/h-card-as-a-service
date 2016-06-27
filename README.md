@@ -3,7 +3,6 @@
 # TODO
 
 * [ ] write README
-* [ ] add location
 * [ ] fetch h-card from entered domain (use pin13)
 * [ ] add person/delete?
 * [ ] add @nickname search urls
