@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160621045756) do
+ActiveRecord::Schema.define(version: 20160627163910) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20160621045756) do
     t.string   "personal_website"
     t.string   "email"
     t.string   "domain"
+    t.string   "location"
   end
 
   create_table "timezones", force: :cascade do |t|

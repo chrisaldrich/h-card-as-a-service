@@ -14,7 +14,7 @@
 
   <div class="form-group">
     <%= f.label :personal_website, "Personal Website" %>
-    <%= f.url_field :personal_website, class: "form-control input-lg" %>
+    <%= f.url_field :personal_website, autofocus: true, class: "form-control input-lg" %>
   </div>
 
   <div class="form-group">
@@ -23,20 +23,37 @@
     <p class="help-block">Twitter, Facebook, Instagram, GitHub, etc. Separated by white-space (space or line break).</p>
   </div>
 
-  <div class="form-group">
-    <%= f.label :photo, "Photo (profile / avatar)" %>
-    <%= f.url_field :photo, class: "form-control" %>
-    <p class="help-block">URL of image, preferrably on your personal website.</p>
+  <div class="row">
+    <div class="col-xs-12 col-sm-6">
+      <div class="form-group">
+        <%= f.label :photo, "Photo (profile / avatar)" %>
+        <%= f.url_field :photo, class: "form-control" %>
+        <p class="help-block">URL of image, preferrably on your personal website.</p>
+      </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-6">
+      <div class="form-group">
+        <%= f.label :email %>
+        <%= f.email_field :email, class: "form-control" %>
+      </div>
+    </div>
   </div>
 
-  <div class="form-group">
-    <%= f.label :email %>
-    <%= f.url_field :email, class: "form-control" %>
-  </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-6">
+      <div class="form-group">
+        <%= f.label :location %>
+        <%= f.email_field :location, class: "form-control" %>
+      </div>
+    </div>
 
-  <div class="form-group">
-    <%= f.label :timezone %>
-    <%= f.select :timezone_id, Timezone.options_for_select, { include_blank: true }, { class: "form-control" } %>
+    <div class="col-xs-12 col-sm-6">
+      <div class="form-group">
+        <%= f.label :timezone %>
+        <%= f.select :timezone_id, Timezone.options_for_select, { include_blank: true }, { class: "form-control" } %>
+      </div>
+    </div>
   </div>
 
   <div class="form-group">
