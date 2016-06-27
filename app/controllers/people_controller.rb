@@ -10,6 +10,9 @@ class PeopleController < ApplicationController
   end
 
   def show
+    if @person.nil?
+      redirect_to root_path
+    end
   end
 
   def new
