@@ -11,6 +11,7 @@
     <nav role="navigation">
       <% if signed_in? %>
         <%= link_to 'Home', root_path, class: "btn btn-default", rel: "home" %>
+        <%= link_to 'Chat People', chat_people_path, class: "btn btn-default" %>
         <%= link_to 'New Person', new_path, class: "btn btn-default" %>
 
         <% if signed_in? && @person.try(:domain).present? %>

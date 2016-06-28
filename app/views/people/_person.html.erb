@@ -1,3 +1,7 @@
+<div class="page-header">
+  <h1><%= link_to_unless_current person.domain, "/#{person.domain}" %></h1>
+</div>
+
 <div class="h-card">
   <% unless person.photo.blank? %>
     <%= image_tag person.photo, class: "u-photo" %>
@@ -38,7 +42,9 @@
     <h2 class="h4">Chat Usernames</h2>
     <ul>
       <% person.chat_usernames.split(/\s|,/).map{ |cu| cu unless cu.blank? }.compact.each do |chat_username| %>
-        <li class="p-nickname"><%= chat_username %></li>
+        <li class="p-nickname">
+          <%= link_to chat_username, nickname_path(chat_username) %>
+        </li>
       <% end %>
     </ul>
   <% end %>

@@ -1,0 +1,19 @@
+<h1>Chat People</h1>
+
+<ol id="chat-people">
+  <% @nicknames.each do |nickname| %>
+    <li class="h-card">
+      <% if nickname.person.photo.present? %>
+        <%= link_to nickname.person.personal_website, class: "u-url" do %>
+          <%= image_tag nickname.person.photo, class: "u-photo" %>
+        <% end %>
+      <% end %>
+
+      <%= link_to nickname.name, "/#{nickname.person.domain}", class: "p-name p-nickname" %>
+
+      <% if nickname.person.timezone.present? %>
+        (<span class="p-tz"><%= nickname.person.timezone.name %></span>)
+      <% end %>
+    </li>
+  <% end %>
+</ol>

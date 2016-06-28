@@ -17,16 +17,6 @@ class PeopleController < ApplicationController
     end
   end
 
-  def nickname
-    @people = Nickname.where(name: params[:nickname]).all.map{ |n| n.person }
-
-    if @people.blank?
-      redirect_to root_path
-    else
-      render :show
-    end
-  end
-
   def new
     website = params[:website]
     @person = Person.new(personal_website: website)

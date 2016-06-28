@@ -16,6 +16,18 @@ nav[role=navigation] {
   }
 }
 
+#chat-people {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+
+  img {
+    height:1.2em;
+    vertical-align:bottom;
+  }
+}
+
+
 #debug {
   margin-top: 20em;
 }
