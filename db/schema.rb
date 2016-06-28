@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160627231817) do
+ActiveRecord::Schema.define(version: 20160628000906) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,13 +32,16 @@ ActiveRecord::Schema.define(version: 20160627231817) do
     t.text     "chat_usernames"
     t.text     "photo"
     t.text     "additional_info"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
     t.integer  "timezone_id"
     t.string   "personal_website"
     t.string   "email"
     t.string   "domain"
     t.string   "location"
+    t.string   "pronoun_nominative"
+    t.string   "pronoun_oblique"
+    t.string   "pronoun_possessive"
   end
 
   create_table "timezones", force: :cascade do |t|

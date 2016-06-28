@@ -7,57 +7,108 @@
     </div>
   <% end %>
 
-  <div class="form-group">
-    <%= f.label :name %>
-    <%= f.text_field :name, class: "form-control input-lg" %>
-  </div>
+  <fieldset class="form-group">
+    <legend>Names</legend>
 
-  <div class="form-group">
-    <%= f.label :personal_website, "Personal Website" %>
-    <%= f.url_field :personal_website, autofocus: true, class: "form-control input-lg" %>
-  </div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-6">
+        <div class="form-group">
+          <%= f.label :name, "Full Name" %>
+          <%= f.text_field :name, class: "form-control input-lg" %>
+        </div>
+      </div>
 
-  <div class="form-group">
-    <%= f.label :urls, "Other URLs" %>
-    <%= f.text_area :urls, class: "form-control" %>
-    <p class="help-block">Twitter, Facebook, Instagram, GitHub, etc. Separated by white-space (space or line break).</p>
-  </div>
+      <div class="col-xs-12 col-sm-6">
+        <div class="form-group">
+          <%= f.label :chat_usernames, "Chat Usernames" %>
+          <%= f.text_field :chat_usernames, class: "form-control input-lg" %>
+          <p class="help-block">Slack usernames or IRC nicknames. Separated by comma or space.</p>
+        </div>
+      </div>
+    </div>
+  </fieldset>
 
-  <div class="row">
-    <div class="col-xs-12 col-sm-6">
-      <div class="form-group">
-        <%= f.label :photo, "Photo (profile / avatar)" %>
-        <%= f.url_field :photo, class: "form-control" %>
-        <p class="help-block">URL of image, preferrably on your personal website.</p>
+
+  <fieldset class="form-group">
+    <legend>URLs</legend>
+
+    <div class="form-group">
+      <%= f.label :personal_website, "Personal Website" %>
+      <%= f.url_field :personal_website, class: "form-control input-lg" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :urls, "Other URLs" %>
+      <%= f.text_area :urls, class: "form-control" %>
+      <p class="help-block">Twitter, Facebook, Instagram, GitHub, etc. Separated by white-space (space or line break).</p>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12 col-sm-6">
+        <div class="form-group">
+          <%= f.label :photo, "Photo (profile / avatar)" %>
+          <%= f.url_field :photo, class: "form-control" %>
+          <p class="help-block">URL of image, preferrably on your personal website.</p>
+        </div>
+      </div>
+
+      <div class="col-xs-12 col-sm-6">
+        <div class="form-group">
+          <%= f.label :email %>
+          <%= f.email_field :email, class: "form-control" %>
+        </div>
       </div>
     </div>
 
-    <div class="col-xs-12 col-sm-6">
-      <div class="form-group">
-        <%= f.label :email %>
-        <%= f.email_field :email, class: "form-control" %>
+  </fieldset>
+
+
+  <fieldset class="form-group">
+    <legend>Geo</legend>
+
+    <div class="row">
+      <div class="col-xs-12 col-sm-6">
+        <div class="form-group">
+          <%= f.label :location %>
+          <%= f.email_field :location, class: "form-control" %>
+        </div>
+      </div>
+
+      <div class="col-xs-12 col-sm-6">
+        <div class="form-group">
+          <%= f.label :timezone %>
+          <%= f.select :timezone_id, Timezone.options_for_select, { include_blank: true }, { class: "form-control" } %>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="row">
-    <div class="col-xs-12 col-sm-6">
-      <div class="form-group">
-        <%= f.label :location %>
-        <%= f.email_field :location, class: "form-control" %>
+  </fieldset>
+
+  <fieldset class="form-group">
+    <legend>Pronouns</legend>
+
+    <div class="row">
+      <div class="col-xs-12 col-sm-4">
+        <%= f.label :pronoun_nominative, "Nominative" %>
+        <%= f.text_field :pronoun_nominative, class: "form-control" %>
+        <p class="help-block">See: <%= link_to "pronoun.is", "http://pronoun.is" %></p>
+      </div>
+
+      <div class="col-xs-12 col-sm-4">
+        <%= f.label :pronoun_oblique, "Oblique" %>
+        <%= f.text_field :pronoun_oblique, class: "form-control" %>
+      </div>
+
+      <div class="col-xs-12 col-sm-4">
+        <%= f.label :pronoun_possessive, "Possessive" %>
+        <%= f.text_field :pronoun_possessive, class: "form-control" %>
       </div>
     </div>
+  </fieldset>
 
-    <div class="col-xs-12 col-sm-6">
-      <div class="form-group">
-        <%= f.label :timezone %>
-        <%= f.select :timezone_id, Timezone.options_for_select, { include_blank: true }, { class: "form-control" } %>
-      </div>
-    </div>
-  </div>
 
-  <div class="form-group">
-    <%= f.label :birthday %>
+  <fieldset class="form-group">
+    <legend>Birthday</legend>
 
     <div class="row">
       <div class="col-xs-12 col-sm-4">
@@ -69,7 +120,7 @@
                 end_year: Time.now.year
               },
               start_year: 1900,
-              end_year: Time.now.year, 
+              end_year: Time.now.year,
               name:  "person[birthday(1i)]",
               id:    "person_birthday_year_1i",
               class: "form-control datetime-select" %>
@@ -102,13 +153,7 @@
       </div>
     </div>
 
-  </div>
-
-  <div class="form-group">
-    <%= f.label :chat_usernames %>
-    <%= f.text_field :chat_usernames, class: "form-control" %>
-    <p class="help-block">Slack usernames or IRC nicknames. Separated by comma or space.</p>
-  </div>
+  </fieldset>
 
   <div class="form-group">
     <%= f.label :additional_info, "Additional Info" %>

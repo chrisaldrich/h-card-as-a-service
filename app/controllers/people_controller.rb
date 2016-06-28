@@ -101,6 +101,19 @@ class PeopleController < ApplicationController
           if item["properties"]["note"].present?
             @person.additional_info = item["properties"]["note"].join(" ")
           end
+
+          # pronouns x-pronoun-nominative x-pronoun-oblique x-pronoun-possessive
+          if item["properties"]["x-pronoun-nominative"].present?
+            @person.pronoun_nominative = item["properties"]["x-pronoun-nominative"].first
+          end
+
+          if item["properties"]["x-pronoun-oblique"].present?
+            @person.pronoun_oblique = item["properties"]["x-pronoun-oblique"].first
+          end
+
+          if item["properties"]["x-pronoun-possessive"].present?
+            @person.pronoun_possessive = item["properties"]["x-pronoun-possessive"].first
+          end
         end
       end
 
