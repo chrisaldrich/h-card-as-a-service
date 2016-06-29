@@ -22,9 +22,12 @@ nav[role=navigation] {
   margin: 0 0 4rem 0;
   padding: 0;
   
+  .h-card {
+    margin-bottom: 2rem;
+  }
 
   .u-photo {
-    height:1.2em;
+    height: 8rem;
     vertical-align:bottom;
   }
 }
