@@ -35,33 +35,33 @@
   <% @nicknames.each do |nickname| %>
     <tr class="h-card">
       <td>
-      <% if nickname.person.photo.present? %>
-        <%= link_to nickname.person.personal_website, class: "u-url" do %>
-          <%= image_tag nickname.person.photo, class: "u-photo" %>
+        <% if nickname.person.photo.present? %>
+          <%= link_to nickname.person.personal_website, class: "u-url" do %>
+            <%= image_tag nickname.person.photo, class: "u-photo" %>
+          <% end %>
         <% end %>
-      <% end %>
       </td>
 
       <td>
-      <%= link_to nickname.name, "/#{nickname.person.domain}", class: "p-nickname" %>
+        <%= link_to nickname.name, "/#{nickname.person.domain}", class: "p-nickname" %>
       </td>
 
       <td>
-      <% if nickname.person.photo.present? %>
-        <%= link_to nickname.person.name, "/#{nickname.person.domain}", class: "p-name" %>
-      <% end %>
+        <% if nickname.person.photo.present? %>
+          <%= link_to nickname.person.name, "/#{nickname.person.domain}", class: "p-name" %>
+        <% end %>
       </td>
 
       <td>
-      <% if nickname.person.timezone.present? %>
-      <%= link_to nickname.person.domain, nickname.person.personal_website, class: "u-url" %>
-      <% end %>
+        <% if nickname.person.timezone.present? %>
+          <%= link_to nickname.person.domain, nickname.person.personal_website, class: "u-url" %>
+        <% end %>
       </td>
 
       <td>
-      <% if nickname.person.timezone.present? %>
-        (<span class="p-tz"><%= nickname.person.timezone.name %></span>)
-      <% end %>
+        <% if nickname.person.timezone.present? %>
+          <span class="p-tz"><%= nickname.person.timezone.name %></span>
+        <% end %>
       </td>
     </tr>
   <% end %>
