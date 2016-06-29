@@ -153,7 +153,8 @@ class PeopleController < ApplicationController
 
   private
   def set_person
-    @person = Person.find_by(domain: "#{params[:domain]}.#{params[:tld]}")
+    domain  = [params[:subdomain], params[:domain], params[:tld]].compact.join(".")
+    @person = Person.find_by(domain: domain)
   end
 
   def person_params
