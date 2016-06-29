@@ -2,7 +2,7 @@
   <h1>Chat People</h1>
 </div>
 
-<ol class="chat-people">
+<ol class="people">
   <% @nicknames.each do |nickname| %>
     <li class="h-card">
       <% if nickname.person.photo.present? %>
@@ -25,7 +25,7 @@
   <% end %>
 </ol>
 
-<table class="table table-border chat-people">
+<table class="people table table-border">
   <tr>
     <th>&nbsp;</th>
     <th>Nickname</th>
@@ -35,7 +35,7 @@
   </tr>
 
   <% @nicknames.each do |nickname| %>
-    <tr class="h-card">
+    <tr id="<%= nickname.name %>" class="h-card">
       <td>
         <% if nickname.person.photo.present? %>
           <%= link_to nickname.person.personal_website, class: "u-url" do %>

@@ -12,17 +12,18 @@ nav[role=navigation] {
 
 .h-card {
   .u-photo {
+    height: auto;
     max-width: 200px;
   }
 }
 
-.chat-people {
+.people {
   list-style-type: none;
   margin: 0 0 4rem 0;
   padding: 0;
   
 
-  img {
+  .u-photo {
     height:1.2em;
     vertical-align:bottom;
   }

@@ -6,9 +6,9 @@
   <h1>People</h1>
 </div>
 
-<ul>
+<ul class="people">
   <% @people.each do |person| %>
-    <li>
+    <li id="<%= person.domain %>">
       <%= render person %>
     </li>
   <% end %>
