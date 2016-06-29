@@ -8,8 +8,8 @@ class Person < ActiveRecord::Base
   before_create :generate_domain
   before_update :ensure_protocol
   before_create :ensure_protocol
-  before_update :generate_nicknames
-  before_create :generate_nicknames
+  after_update :generate_nicknames
+  after_create :generate_nicknames
 
   PROTOCOL_REGEX = /^https*:\/\//
 
@@ -25,7 +25,7 @@ class Person < ActiveRecord::Base
 
   def generate_nicknames
     self.chat_usernames.split(/,|\W/).reject{ |n| n.blank? }.each do |nickname|
-      Nickname.find_or_create_by!(name: nickname, person_id: self.id)
+      self.nicknames.find_or_create_by!(name: nickname)
     end
   end
 end
