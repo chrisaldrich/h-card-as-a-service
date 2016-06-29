@@ -14,7 +14,7 @@ class Person < ActiveRecord::Base
   PROTOCOL_REGEX = /^https*:\/\//
 
   def generate_domain
-    self.domain = self.personal_website.gsub(PROTOCOL_REGEX, "")
+    self.domain = self.personal_website.gsub(PROTOCOL_REGEX, "").gsub(/\/*$/, "")
   end
 
   def ensure_protocol
