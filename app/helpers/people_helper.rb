@@ -1,4 +1,11 @@
 module PeopleHelper
+  def image_tag_with_fallback(person=nil)
+    # 1x1 white pixel as data URL
+    fallback_url = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAAtJREFUCB1j+A8EAAn7A/0Mu1vnAAAAAElFTkSuQmCC"
+    image_url    = person.photo.blank? ? fallback_url : person.photo
+    image_tag image_url, class: "u-photo media-object"
+  end
+
   def h_card_code(person)
     html = ""
     tab  = "  "

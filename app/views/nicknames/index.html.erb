@@ -8,10 +8,8 @@
       <div class="media">
 
         <div class="media-left">
-          <% if nickname.person.photo.present? %>
-            <%= link_to nickname.person.personal_website, class: "u-url" do %>
-              <%= image_tag nickname.person.photo, class: "u-photo media-object" %>
-            <% end %>
+          <%= link_to "/#{nickname.person.domain}", class: "u-url" do %>
+            <%= image_tag_with_fallback nickname.person %>
           <% end %>
         </div><!-- .media-left -->
 
