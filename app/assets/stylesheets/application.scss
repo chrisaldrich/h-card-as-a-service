@@ -16,10 +16,11 @@ nav[role=navigation] {
   }
 }
 
-#chat-people {
+.chat-people {
   list-style-type: none;
-  margin: 0;
+  margin: 0 0 4rem 0;
   padding: 0;
+  
 
   img {
     height:1.2em;

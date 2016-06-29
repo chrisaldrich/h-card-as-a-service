@@ -1,6 +1,6 @@
 <h1>Chat People</h1>
 
-<ol id="chat-people">
+<ol class="chat-people">
   <% @nicknames.each do |nickname| %>
     <li class="h-card">
       <% if nickname.person.photo.present? %>
@@ -9,7 +9,12 @@
         <% end %>
       <% end %>
 
-      <%= link_to nickname.name, "/#{nickname.person.domain}", class: "p-name p-nickname" %>
+      <%= link_to nickname.name, "/#{nickname.person.domain}", class: "p-nickname" %>
+
+      <% if nickname.person.photo.present? %>
+        &mdash;
+        <%= link_to nickname.person.name, "/#{nickname.person.domain}", class: "p-name" %>
+      <% end %>
 
       <% if nickname.person.timezone.present? %>
         (<span class="p-tz"><%= nickname.person.timezone.name %></span>)
@@ -17,3 +22,47 @@
     </li>
   <% end %>
 </ol>
+
+<table class="table table-border chat-people">
+  <tr>
+    <th>&nbsp;</th>
+    <th>Nickname</th>
+    <th>Name</th>
+    <th>Website</th>
+    <th>Timezone</th>
+  </tr>
+
+  <% @nicknames.each do |nickname| %>
+    <tr class="h-card">
+      <td>
+      <% if nickname.person.photo.present? %>
+        <%= link_to nickname.person.personal_website, class: "u-url" do %>
+          <%= image_tag nickname.person.photo, class: "u-photo" %>
+        <% end %>
+      <% end %>
+      </td>
+
+      <td>
+      <%= link_to nickname.name, "/#{nickname.person.domain}", class: "p-nickname" %>
+      </td>
+
+      <td>
+      <% if nickname.person.photo.present? %>
+        <%= link_to nickname.person.name, "/#{nickname.person.domain}", class: "p-name" %>
+      <% end %>
+      </td>
+
+      <td>
+      <% if nickname.person.timezone.present? %>
+      <%= link_to nickname.person.domain, nickname.person.personal_website, class: "u-url" %>
+      <% end %>
+      </td>
+
+      <td>
+      <% if nickname.person.timezone.present? %>
+        (<span class="p-tz"><%= nickname.person.timezone.name %></span>)
+      <% end %>
+      </td>
+    </tr>
+  <% end %>
+</table>
