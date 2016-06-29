@@ -6,7 +6,7 @@ class PeopleController < ApplicationController
   before_action :set_person, only: [:show, :edit, :update, :destroy]
 
   def index
-    @people = Person.all
+    @people = Person.all.order("domain ASC")
   end
 
   def show
