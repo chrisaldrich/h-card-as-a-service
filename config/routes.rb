@@ -1,17 +1,22 @@
 Rails.application.routes.draw do
-  get 'nicknames/index'
-
-  get 'nicknames/show'
-
   root 'about#home'
 
-  get '/(:subdomain.):domain.:tld',      to: 'people#show'
-  get '/(:subdomain.):domain.:tld/edit', to: 'people#edit'
-  get '/new',                     to: 'people#new', as: 'new'
+  # /new person
+  get '/new', to: 'people#new', as: 'new'
 
-  patch	 '/(:subdomain.):domain.:tld',   to: 'people#update'
-  put 	 '/(:subdomain.):domain.:tld',   to: 'people#update'
-  delete '/(:subdomain.):domain.:tld',   to: 'people#destroy'
+  # subdomain routes
+  get    '/:subdomain.:domain.:tld',      to: 'people#show'
+  get    '/:subdomain.:domain.:tld/edit', to: 'people#edit'
+  patch  '/:subdomain.:domain.:tld',      to: 'people#update'
+  put    '/:subdomain.:domain.:tld',      to: 'people#update'
+  delete '/:subdomain.:domain.:tld',      to: 'people#destroy'
+
+  # domain routes
+  get    '/:domain.:tld',      to: 'people#show'
+  get    '/:domain.:tld/edit', to: 'people#edit'
+  patch  '/:domain.:tld',      to: 'people#update'
+  put    '/:domain.:tld',      to: 'people#update'
+  delete '/:domain.:tld',      to: 'people#destroy'
 
   resources :people, only: [:index, :create]
 
