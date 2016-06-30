@@ -46,7 +46,7 @@
     <div class="row">
       <div class="col-xs-12 col-sm-6">
         <div class="form-group">
-          <%= f.label :photo, "Photo (profile / avatar)" %>
+          <%= f.label :photo, "Photo (profile/avatar)" %>
           <%= f.url_field :photo, class: "form-control" %>
           <p class="help-block">URL of image, preferrably on your personal website.</p>
         </div>
@@ -59,7 +59,6 @@
         </div>
       </div>
     </div>
-
   </fieldset>
 
 
@@ -91,7 +90,6 @@
       <div class="col-xs-12 col-sm-4">
         <%= f.label :pronoun_nominative, "Nominative" %>
         <%= f.text_field :pronoun_nominative, class: "form-control" %>
-        <p class="help-block">See: <%= link_to "pronoun.is", "http://pronoun.is" %></p>
       </div>
 
       <div class="col-xs-12 col-sm-4">
@@ -104,6 +102,11 @@
         <%= f.text_field :pronoun_possessive, class: "form-control" %>
       </div>
     </div>
+
+    <p class="help-block">
+      See: <%= link_to "pronoun.is", "http://pronoun.is" %>
+      For example, she/her/hers, they/them/theirs, he/his/his.
+    </p>
   </fieldset>
 
 
