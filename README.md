@@ -3,6 +3,7 @@
 # TODO
 
 * write README
+* add syntax highlighting for html h-card copy/pasta
 * add person/delete?
 * implement real `signed_in?` using indieauth
   * auto-populate `URL` from indieauth when `signed_in?`
