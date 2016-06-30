@@ -101,7 +101,7 @@ module PeopleHelper
         chat_usernames.each do |chat_username|
           html << tab
           html << tab if chat_usernames.length > 1
-          html << h(%Q{<li>}) if chat_usernames.length > 1
+          html << h(%Q{<li class="p-nickname">}) if chat_usernames.length > 1
           html << h(%Q{#{chat_username}})
           html << h(%Q{</li>}) if chat_usernames.length > 1
           html << tag(:br)
