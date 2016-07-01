@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160628000906) do
+ActiveRecord::Schema.define(version: 20160701020103) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,7 +28,6 @@ ActiveRecord::Schema.define(version: 20160628000906) do
   create_table "people", force: :cascade do |t|
     t.string   "name"
     t.text     "urls"
-    t.date     "birthday"
     t.text     "chat_usernames"
     t.text     "photo"
     t.text     "additional_info"
@@ -42,6 +41,9 @@ ActiveRecord::Schema.define(version: 20160628000906) do
     t.string   "pronoun_nominative"
     t.string   "pronoun_oblique"
     t.string   "pronoun_possessive"
+    t.string   "birthday_year"
+    t.string   "birthday_month"
+    t.string   "birthday_day"
   end
 
   create_table "timezones", force: :cascade do |t|

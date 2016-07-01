@@ -84,7 +84,7 @@ module PeopleHelper
       # birthday
       unless person.birthday.blank?
         html << tab
-        html << h(%Q{<data class="p-bday" value="#{person.birthday.strftime('%Y-%m-%d')}">#{person.birthday.strftime('%B %d, %Y')}</data>})
+        html << h(%Q{<data class="p-bday" value="#{person.birthday}">#{person.birthday}</data>})
         html << tag(:br)
       end
 

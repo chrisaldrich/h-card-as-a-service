@@ -160,7 +160,9 @@ class PeopleController < ApplicationController
   def person_params
     params.require(:person).permit(:name,
                                    :urls,
-                                   :birthday,
+                                   :birthday_year,
+                                   :birthday_month,
+                                   :birthday_day,
                                    :chat_usernames,
                                    :photo,
                                    :additional_info,

@@ -8,10 +8,22 @@ class Person < ActiveRecord::Base
   before_create :generate_domain
   before_update :ensure_protocol
   before_create :ensure_protocol
-  after_update :generate_nicknames
-  after_create :generate_nicknames
+  after_update  :generate_nicknames
+  after_create  :generate_nicknames
 
   PROTOCOL_REGEX = /^https*:\/\//
+
+  def birthday
+    if self.birthday_year.present? && self.birthday_month.present? && self.birthday_day.present?
+      [self.birthday_year, self.birthday_month, self.birthday_day].join("-")
+    elsif self.birthday_year.blank? && self.birthday_month.present? && self.birthday_day.present?
+      ["-", self.birthday_month, self.birthday_day].join("-")
+    elsif self.birthday_year.blank? && self.birthday_month.blank?
+      nil
+    elsif self.birthday_year.present? && self.birthday_month.blank?
+      self.birthday_year
+    end
+  end
 
   def generate_domain
     self.domain = self.personal_website.gsub(PROTOCOL_REGEX, "").gsub(/\/*$/, "")
