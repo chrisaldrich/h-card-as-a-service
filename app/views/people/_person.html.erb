@@ -8,7 +8,11 @@
   <% end %>
 
   <% unless person.name.blank? %>
-    <h1 class="p-name"><%= person.name %></h1>
+    <h1 class="p-name"><%= person.name %>
+      <% unless person.pronouns.blank? %>
+        <small><%= person.pronouns %></small>
+      <% end %>
+    </h1>
   <% end %>
 
   <% unless person.personal_website.blank? %>
@@ -26,6 +30,11 @@
 
   <% unless person.name.blank? %>
     <p><%= mail_to person.email, person.email, class: "u-email" %></p>
+  <% end %>
+
+  <% unless person.location.blank? %>
+    <h2 class="h4">Location</h2>
+    <p class="p-x-location"><%= person.location %></p>
   <% end %>
 
   <% unless person.timezone.blank? %>

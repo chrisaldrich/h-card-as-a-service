@@ -158,6 +158,19 @@ class PeopleController < ApplicationController
   end
 
   def person_params
-    params.require(:person).permit(:name, :personal_website, :email, :urls, :timezone_id, :birthday, :chat_usernames, :photo, :additional_info)
+    params.require(:person).permit(:name,
+                                   :urls,
+                                   :birthday,
+                                   :chat_usernames,
+                                   :photo,
+                                   :additional_info,
+                                   :timezone_id,
+                                   :personal_website,
+                                   :email,
+                                   :domain,
+                                   :location,
+                                   :pronoun_nominative,
+                                   :pronoun_oblique,
+                                   :pronoun_possessive)
   end
 end
