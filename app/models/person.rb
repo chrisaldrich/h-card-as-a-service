@@ -13,14 +13,6 @@ class Person < ActiveRecord::Base
 
   PROTOCOL_REGEX = /^https*:\/\//
 
-  def pronouns
-    list = []
-    list << self.pronoun_nominative unless self.pronoun_nominative.blank?
-    list << self.pronoun_oblique unless self.pronoun_oblique.blank?
-    list << self.pronoun_possessive unless self.pronoun_possessive.blank?
-    list.join(" / ")
-  end
-
   def generate_domain
     self.domain = self.personal_website.gsub(PROTOCOL_REGEX, "").gsub(/\/*$/, "")
   end

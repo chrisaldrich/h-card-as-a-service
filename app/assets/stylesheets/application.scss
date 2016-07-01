@@ -32,6 +32,12 @@ nav[role=navigation] {
   }
 }
 
+span[class^='p-x-pronoun']:after {
+  content: " / ";
+}
+span[class^='p-x-pronoun']:last-of-type:after {
+  content: "";
+}
 
 #debug {
   margin-top: 20em;

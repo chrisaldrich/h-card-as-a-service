@@ -8,10 +8,21 @@
   <% end %>
 
   <% unless person.name.blank? %>
-    <h1 class="p-name"><%= person.name %>
-      <% unless person.pronouns.blank? %>
-        <small><%= person.pronouns %></small>
-      <% end %>
+    <h1>
+      <span class="p-name"><%= person.name %></span>
+      <small>
+        <% unless person.pronoun_nominative.blank? %>
+          <span class="p-x-pronoun-nominative"><%= person.pronoun_nominative %></span>
+        <% end %>
+
+        <% unless person.pronoun_oblique.blank? %>
+          <span class="p-x-pronoun-oblique"><%= person.pronoun_oblique %></span>
+        <% end %>
+
+        <% unless person.pronoun_possessive.blank? %>
+          <span class="p-x-pronoun-possessive"><%= person.pronoun_possessive %></span>
+        <% end %>
+      </small>
     </h1>
   <% end %>
 
