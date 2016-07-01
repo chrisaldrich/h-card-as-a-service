@@ -62,8 +62,16 @@ class PeopleController < ApplicationController
 
           # birthday (bday)
           if item["properties"]["bday"].present?
-            @birthday = Date.parse(item["properties"]["bday"].first)
-            @person.birthday = @birthday
+            birthday = Date.parse(item["properties"]["bday"].first)
+
+            if item["properties"]["bday"].first =~ /^-/
+              @person.birthday_year = nil
+            else
+              @person.birthday_year  = birthday.year
+            end
+
+            @person.birthday_month = birthday.month
+            @person.birthday_day   = birthday.day
           end
 
           # timezone offset (tz)
