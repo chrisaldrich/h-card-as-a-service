@@ -39,7 +39,7 @@
     </ul>
   <% end %>
 
-  <% unless person.name.blank? %>
+  <% unless person.email.blank? %>
     <p><%= mail_to person.email, person.email, class: "u-email" %></p>
   <% end %>
 
